@@ -50,7 +50,7 @@ const userSchema = new Schema({
 userSchema.pre("save", async function(next){
     if(!this.isModified("password")) return next();//before save the doc the pwd isnot modified
 
-    this.password = bcrypt.hash(this.password, 10)//pwd is moidified to encrypt,10-homany no.
+    this.password = await bcrypt.hash(this.password, 10)//pwd is moidified to encrypt,10-homany no.
     next()
 })
 
